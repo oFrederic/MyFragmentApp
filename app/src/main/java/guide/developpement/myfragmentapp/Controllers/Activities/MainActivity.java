@@ -24,5 +24,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     @Override
     public void onButtonClicked(View view) {
         Log.e(getClass().getSimpleName(), "Button clicked !");
+        startActivity(new Intent(this, DetailActivity.class));
     }
 }
