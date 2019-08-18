@@ -12,7 +12,7 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_BUTTON_TAG = "com.openclassrooms.myfragmentapp.Controllers.Activities.DetailActivity.EXTRA_BUTTON_TAG";
 
     // Declare detail fragment.
-    private DetailFragment detailFragment;
+    private DetailFragment mDetailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,14 @@ public class DetailActivity extends AppCompatActivity {
 
     private void configureAndShowDetailFragment() {
         // Get FragmentManager (Support) and Try to find existing instance of fragment in FrameLayout container.
-        detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
+        mDetailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
 
-        if (detailFragment == null) {
+        if (mDetailFragment == null) {
             // Create new main fragment.
-            detailFragment = new DetailFragment();
+            mDetailFragment = new DetailFragment();
             // Add it to FrameLayout container.
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_detail, detailFragment)
+                    .add(R.id.frame_layout_detail, mDetailFragment)
                     .commit();
         }
     }
@@ -56,6 +56,6 @@ public class DetailActivity extends AppCompatActivity {
         // Get button's tag from intent.
         int buttonTag = getIntent().getIntExtra(EXTRA_BUTTON_TAG, 0);
         // Update DetailFragment's TextView.
-        detailFragment.updateTextView(buttonTag);
+        mDetailFragment.updateTextView(buttonTag);
     }
 }

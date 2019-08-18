@@ -12,8 +12,8 @@ import guide.developpement.myfragmentapp.R;
 public class MainActivity extends AppCompatActivity implements MainFragment.OnButtonClickedListener {
 
     // Declare our two fragments.
-    private MainFragment mainFragment;
-    private DetailFragment detailFragment;
+    private MainFragment mMainFragment;
+    private DetailFragment mDetailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
         int buttonTag = Integer.parseInt(view.getTag().toString());
 
         // Check if DetailFragment is visible (Tablet).
-        if (detailFragment != null && detailFragment.isVisible()) {
+        if (mDetailFragment != null && mDetailFragment.isVisible()) {
             // TABLET : Update directly TextView.
-            detailFragment.updateTextView(buttonTag);
+            mDetailFragment.updateTextView(buttonTag);
         } else {
             // SMARTPHONE : Pass tag to the new intent that will show DetailActivity (and so DetailFragment).
             Intent i = new Intent(this, DetailActivity.class);
@@ -52,23 +52,23 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
 
     private void configureAndShowMainFragment() {
 
-        mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_main);
+        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_main);
 
-        if (mainFragment == null) {
-            mainFragment = new MainFragment();
+        if (mMainFragment == null) {
+            mMainFragment = new MainFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_main, mainFragment)
+                    .add(R.id.frame_layout_main, mMainFragment)
                     .commit();
         }
     }
 
     private void configureAndShowDetailFragment() {
-        detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
+        mDetailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
 
-        if (detailFragment == null && findViewById(R.id.frame_layout_detail) != null) {
-            detailFragment = new DetailFragment();
+        if (mDetailFragment == null && findViewById(R.id.frame_layout_detail) != null) {
+            mDetailFragment = new DetailFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_detail, detailFragment)
+                    .add(R.id.frame_layout_detail, mDetailFragment)
                     .commit();
         }
     }

@@ -11,6 +11,7 @@
         android:id="@+id/fragment_detail_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="I have no details to show you..."
         android:textColor="#FFF"
         android:textSize="20sp" />
