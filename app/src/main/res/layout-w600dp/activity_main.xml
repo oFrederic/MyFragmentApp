@@ -8,12 +8,12 @@
         android:id="@+id/frame_layout_main"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="30"/>
+        android:layout_weight="30" />
 
     <FrameLayout
         android:id="@+id/frame_layout_detail"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="70"/>
+        android:layout_weight="70" />
 
 </LinearLayout>

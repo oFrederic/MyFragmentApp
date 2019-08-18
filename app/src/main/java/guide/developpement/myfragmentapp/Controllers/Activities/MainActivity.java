@@ -11,16 +11,16 @@ import guide.developpement.myfragmentapp.R;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.OnButtonClickedListener {
 
-    // 1 - Declare main and detail fragments.
-    private MainFragment mMainFragment;
-    private DetailFragment mDetailFragment;
+    // Declare our two fragments.
+    private MainFragment mainFragment;
+    private DetailFragment detailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 2 - Configure and show main and detail fragments.
+        // Configure and show it.
         this.configureAndShowMainFragment();
         this.configureAndShowDetailFragment();
     }
@@ -31,9 +31,18 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
 
     @Override
     public void onButtonClicked(View view) {
-        // 3 - Check if detail fragment is not created or if not visible
-        if (mDetailFragment == null || !mDetailFragment.isVisible()) {
-            startActivity(new Intent(this, DetailActivity.class));
+        // Retrieve button tag.
+        int buttonTag = Integer.parseInt(view.getTag().toString());
+
+        // Check if DetailFragment is visible (Tablet).
+        if (detailFragment != null && detailFragment.isVisible()) {
+            // TABLET : Update directly TextView.
+            detailFragment.updateTextView(buttonTag);
+        } else {
+            // SMARTPHONE : Pass tag to the new intent that will show DetailActivity (and so DetailFragment).
+            Intent i = new Intent(this, DetailActivity.class);
+            i.putExtra(DetailActivity.EXTRA_BUTTON_TAG, buttonTag);
+            startActivity(i);
         }
     }
 
@@ -42,27 +51,24 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     // --------------
 
     private void configureAndShowMainFragment() {
-        // A - Get FragmentManager (Support) and Try to find existing instance of fragment in FrameLayout container
-        mMainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_main);
 
-        if (mMainFragment == null) {
-            // B - Create new main fragment
-            mMainFragment = new MainFragment();
-            // C - Add it to FrameLayout container
+        mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_main);
+
+        if (mainFragment == null) {
+            mainFragment = new MainFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_main, mMainFragment)
+                    .add(R.id.frame_layout_main, mainFragment)
                     .commit();
         }
     }
 
     private void configureAndShowDetailFragment() {
-        mDetailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
+        detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_detail);
 
-        // A - We only add DetailFragment in Tablet mode (If found frame_layout_detail)
-        if (mDetailFragment == null && findViewById(R.id.frame_layout_detail) != null) {
-            mDetailFragment = new DetailFragment();
+        if (detailFragment == null && findViewById(R.id.frame_layout_detail) != null) {
+            detailFragment = new DetailFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_detail, mDetailFragment)
+                    .add(R.id.frame_layout_detail, detailFragment)
                     .commit();
         }
     }

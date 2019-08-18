@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Controllers.Fragments.MainFragment"
     android:gravity="center"
-    android:background="#D8DCF0">
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/fragment_main_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/fragment_main_button_happy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SHOW ME DETAILS !"
-        android:background="#00000000"
-        android:textColor="#FFF"
-        android:textSize="30sp"/>
+        android:tag="10"
+        android:text="Show Happy Detail" />
+
+    <Button
+        android:id="@+id/fragment_main_button_sad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="20"
+        android:text="Show Sad Detail" />
+
+    <Button
+        android:id="@+id/fragment_main_button_horrible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="30"
+        android:text="Show Horrible Detail" />
 
 </LinearLayout>
